@@ -108,10 +108,19 @@ void solveMaze(vector<vector<int>> maze, int x, int y)
             currentLocationStack.push(make_pair(currentLocationStack.top().first, currentLocationStack.top().second - 1)); 
             currLoc = currentLocationStack.top();
         }
-        else //ASSUMES NONE OF THE WAYS ARE VIABLE AND NEED TO MOVE BACK TO PREVIOUS SPOT
-        {
-            //NEED TO MOVE BACK TO PREVIOUS SPOT 
+        else if(!currentLocationStack.empty())//ASSUMES NONE OF THE WAYS ARE VIABLE AND NOT FIRST ENTRY, NEED TO MOVE BACK
+        { 
+            //NEED TO SET LOCATION AS "VISITED"
+            maze[currentLocationStack.top().first][currentLocationStack.top().second] = 0; //THIS SHOULD MARK IT AS VISITED 
+            
+            //NEED TO MOVE BACK TO PREVIOUS SPOT aka pop
+            currentLocationStack.pop();
         }
+        else
+        {
+            cout << "Something went wrong and no other case evauluated" << endl;    
+        }
+            
         
         
     }
