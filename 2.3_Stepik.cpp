@@ -90,19 +90,23 @@ void solveMaze(vector<vector<int>> maze, int x, int y)
         
         if(maze[currentLocationStack.top().first + 1][currentLocationStack.top().second] == 1) //CHECKS SOUTH
         {
-            
+            currentLocationStack.push(make_pair(currentLocationStack.top().first + 1, currentLocationStack.top().second)); 
+            currLoc = currentLocationStack.top();
         }
         else if(maze[currentLocationStack.top().first][currentLocationStack.top().second + 1] == 1) //CHECKS EAST
         {
-            
+            currentLocationStack.push(make_pair(currentLocationStack.top().first, currentLocationStack.top().second + 1)); 
+            currLoc = currentLocationStack.top();
         }
         else if(maze[currentLocationStack.top().first - 1][currentLocationStack.top().second] == 1) //CHECKS NORTH
         {
-            
+            currentLocationStack.push(make_pair(currentLocationStack.top().first - 1, currentLocationStack.top().second)); 
+            currLoc = currentLocationStack.top();
         }
         else if(maze[currentLocationStack.top().first][currentLocationStack.top().second - 1] == 1) //CHECKS WEST
         {
-            
+            currentLocationStack.push(make_pair(currentLocationStack.top().first, currentLocationStack.top().second - 1)); 
+            currLoc = currentLocationStack.top();
         }
         else //ASSUMES NONE OF THE WAYS ARE VIABLE AND NEED TO MOVE BACK TO PREVIOUS SPOT
         {
