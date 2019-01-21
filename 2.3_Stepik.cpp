@@ -68,22 +68,25 @@ void solveMaze(vector<vector<int>> maze, int x, int y)
 {
     stack< pair<int,int> > currentLocationStack;
     bool done = false;
-    
+    int currRow = 0;
+    int currColumn = 0;
     
     //myStack.push(make_pair(myString, myInt)); just used for reference
     
     currentLocationStack.push(make_pair(0,0)); //creates the first stack pair at (0,0) which is always the beginning
     
-    //sets the current location to 0,0
-    x = 0;
-    y = 0;
+    
+    
+    //cout << "Maze size: " << maze.size() << endl;
+    
     
     while(!done)
     {
-        if(currentLocationStack.top().first == 2 && currentLocationStack.top().second == 3)
+        if(currRow == x && currColumn == y)
         {
             done = true;
             cout << "WIN!" << endl;
+            
             /*
             while(!currentLocationStack.empty())
             {
@@ -94,30 +97,31 @@ void solveMaze(vector<vector<int>> maze, int x, int y)
             
         }
         
+        
         //PROBABLY ACCESING A NEGATE ELEMENT OF MAZE VECTOR SUCH AS maze[-1][0] or something
-        if(maze[currentLocationStack.top().first + 1][currentLocationStack.top().second] == 1) //CHECKS SOUTH
+        if(((currRow+1) >= 0 && (currRow+1) <= maze.size() && currColumn >= 0 && currColumn <= maze.size()) && (maze[currRow + 1][currColumn] == 1)) //CHECKS SOUTH
         {
             currentLocationStack.push(make_pair(currentLocationStack.top().first + 1, currentLocationStack.top().second)); 
-            x = currentLocationStack.top().first;
-            y = currentLocationStack.top().second;
+            currRow = currentLocationStack.top().first;
+            currColumn = currentLocationStack.top().second;
         }
-        else if(maze[currentLocationStack.top().first][currentLocationStack.top().second + 1] == 1) //CHECKS EAST
+        else if((currRow >= 0 && currRow <= maze.size() && (currColumn+1) >= 0 && (currColumn+1) <= maze.size()) && (maze[currRow][currColumn + 1] == 1)   ) //CHECKS EAST
         {
             currentLocationStack.push(make_pair(currentLocationStack.top().first, currentLocationStack.top().second + 1)); 
-            x = currentLocationStack.top().first;
-            y = currentLocationStack.top().second;
+            currRow = currentLocationStack.top().first;
+            currColumn = currentLocationStack.top().second;
         }
-        else if(maze[currentLocationStack.top().first - 1][currentLocationStack.top().second] == 1) //CHECKS NORTH
+        else if(((currRow-1) >= 0 && (currRow-1) <= maze.size() && currColumn >= 0 && currColumn <= maze.size()) && (maze[currRow - 1][currColumn] == 1)) //CHECKS NORTH
         {
             currentLocationStack.push(make_pair(currentLocationStack.top().first - 1, currentLocationStack.top().second)); 
-            x = currentLocationStack.top().first;
-            y = currentLocationStack.top().second;
+            currRow = currentLocationStack.top().first;
+            currColumn = currentLocationStack.top().second;
         }
-        else if(maze[currentLocationStack.top().first][currentLocationStack.top().second - 1] == 1) //CHECKS WEST
+        else if((currRow >= 0 && currRow <= maze.size() && (currColumn-1) >= 0 && (currColumn-1) <= maze.size()) && maze[currRow][currColumn - 1] == 1) //CHECKS WEST
         {
             currentLocationStack.push(make_pair(currentLocationStack.top().first, currentLocationStack.top().second - 1)); 
-            x = currentLocationStack.top().first;
-            y = currentLocationStack.top().second;
+            currRow = currentLocationStack.top().first;
+            currColumn = currentLocationStack.top().second;
         }
         else if(!currentLocationStack.empty())//ASSUMES NONE OF THE WAYS ARE VIABLE AND NOT FIRST ENTRY, NEED TO MOVE BACK
         { 
@@ -132,7 +136,14 @@ void solveMaze(vector<vector<int>> maze, int x, int y)
             cout << "Something went wrong and no other case evauluated" << endl;    
         }
         
+        
+        cout << "Current Row: " << currRow << endl;
+        cout << "Current Column: " << currColumn << endl;
+        cout << endl;
+        
     }//end while
+    
+    
     
 } //end solveMaze
 
