@@ -66,19 +66,52 @@ vector<vector<int>> getInput()
 
 void solveMaze(vector<vector<int>> maze, int x, int y)
 {
-    stack<pair<int, int>> currentLocationStack;
+    stack< pair<int,int> > currentLocationStack;
     bool done = false;
+    pair<int,int> currLoc;
     
     //myStack.push(make_pair(myString, myInt)); just used for reference
     
+    currentLocationStack.push(make_pair(0,0)); //creates the first stack pair at (0,0) which is always the beginning
+    currLoc = currentLocationStack.top();
+    
     while(!done)
     {
-        if(rowStack.top() == 2 && colStack.top() == 3)
+        if(currentLocationStack.top().first == 2 && currentLocationStack.top().second == 3)
         {
             done = true;
-            cout << "(" << rowStack.top() << ", " << colStack.top();
+            while(!currentLocationStack.empty())
+            {
+                cout << "(" << currentLocationStack.top().first << ", " << currentLocationStack.top().second << ")";
+            }
+            //NEED TO FIGURE OUT A WAY TO PRINT THE CORRECT PATH TAKEN PARTICULARY IN REVERSE ORDER
+            
         }
+        
+        if(maze[currentLocationStack.top().first + 1][currentLocationStack.top().second] == 1) //CHECKS SOUTH
+        {
+            
+        }
+        else if(maze[currentLocationStack.top().first][currentLocationStack.top().second + 1] == 1) //CHECKS EAST
+        {
+            
+        }
+        else if(maze[currentLocationStack.top().first - 1][currentLocationStack.top().second] == 1) //CHECKS NORTH
+        {
+            
+        }
+        else if(maze[currentLocationStack.top().first][currentLocationStack.top().second - 1] == 1) //CHECKS WEST
+        {
+            
+        }
+        else //ASSUMES NONE OF THE WAYS ARE VIABLE AND NEED TO MOVE BACK TO PREVIOUS SPOT
+        {
+            //NEED TO MOVE BACK TO PREVIOUS SPOT 
+        }
+        
+        
     }
+    
     
     
 }
